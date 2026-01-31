@@ -13,7 +13,10 @@ const notoSans = Noto_Sans({
 })
 
 export const metadata: Metadata = {
-	title: 'YouTube',
+	title: {
+    absolute: 'Omni',
+    template: '%s - Omni'
+  },
 	description: 'Best app for watching videos'
 }
 

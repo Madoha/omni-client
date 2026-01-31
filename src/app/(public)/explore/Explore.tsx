@@ -6,6 +6,9 @@ import { VideoItem } from '@/ui/videoItem/VIdeoItem'
 
 import { videoService } from '@/services/video.service'
 import type { IVideo } from '@/types/video.types'
+import { Heading } from '@/ui/Heading'
+import { Compass } from 'lucide-react'
+import { SkeletonLoader } from '@/ui/SkeletonLoader'
 
 export function Explore() {
 	const { data, isLoading } = useQuery({
@@ -16,10 +19,10 @@ export function Explore() {
 
 	return (
 		<section>
-			<h2>Explore</h2>
+			<Heading Icon={Compass}>Explore</Heading>
 			<div className='grid grid-cols-6 gap-6'>
 				{isLoading
-					? 'Loading...'
+					? <SkeletonLoader count={6} className='h-36 rounded-md' />
 					: data?.map(video => (
 							<VideoItem
 								key={video.id}
