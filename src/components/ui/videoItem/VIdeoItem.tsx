@@ -24,22 +24,30 @@ export function VideoItem({ video, Icon }: Props) {
 						width={250}
 						height={140}
 						alt={video.title}
-            className='rounded-md'
+						className='rounded-md'
 					/>
 				</Link>
-				<Link href={PAGE.CHANNEL(video.channel.slug)} className='absolute left-1.5 bottom-2'>
+				<Link
+					href={PAGE.CHANNEL(video.channel.slug)}
+					className='absolute left-1.5 bottom-2'
+				>
 					<Image
 						src={video.channel.avatarUrl}
 						width={35}
 						height={35}
 						alt={video.channel.name}
-            className='rounded-full shadow'
+						className='rounded-full shadow'
 					/>
 				</Link>
 			</div>
 			<div className='mb-1.5 flex items-center justify-between'>
 				<div className='flex items-center gap-0.5'>
-					{Icon && <Icon className='text-red-600' size={20} />}
+					{Icon && (
+						<Icon
+							className='text-red-600'
+							size={20}
+						/>
+					)}
 					<span className='text-gray-400 text-sm'>{transformViews(video.viewsCount)}</span>
 				</div>
 				<div>
@@ -47,14 +55,27 @@ export function VideoItem({ video, Icon }: Props) {
 				</div>
 			</div>
 			<div className='mb-1'>
-				<Link href={PAGE.VIDEO(video.slug)} className='line-clamp-2 leading-[1.3]'>{video.title}</Link>
+				<Link
+					href={PAGE.VIDEO(video.slug)}
+					className='line-clamp-2 leading-[1.3]'
+				>
+					{video.title}
+				</Link>
 			</div>
 			<div>
-				<Link href={PAGE.CHANNEL(video.channel.slug)} className='flex items-center gap-1'>
+				<Link
+					href={PAGE.CHANNEL(video.channel.slug)}
+					className='flex items-center gap-1'
+				>
 					<span className='text-gray-400 text-sm'>{video.channel.name}</span>
-					<span>
-						<BadgeCheck className='text-green-500' size={15}/>
-					</span>
+					{video.channel.isVerified && (
+						<span>
+							<BadgeCheck
+								className='text-green-500'
+								size={15}
+							/>
+						</span>
+					)}
 				</Link>
 			</div>
 		</div>
