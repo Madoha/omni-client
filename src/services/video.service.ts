@@ -1,19 +1,25 @@
+import { axiosClassic } from "@/api/axios";
 import type { IVideo } from "@/types/video.types";
-import axios from "axios";
 
 class VideoService {
+  private readonly _VIDEOS = '/videos';
+
   getAll(searchTerm?: string | null) {
-    return axios.get('http://localhost:4200/api/videos', {
+    return axiosClassic.get(this._VIDEOS, {
       params: searchTerm ? { searchTerm } : {}
     });
   }
 
   getTrandingVideos() {
-    return axios.get('http://localhost:4200/api/videos/trending');
+    return axiosClassic.get<IVideo[]>(`${this._VIDEOS}/trending`);
   }
 
   getExploreVideos() {
-    return axios.get('http://localhost:4200/api/videos/explore');
+    return axiosClassic.get(`${this._VIDEOS}/explore`);
+  }
+
+  getVideoGamesVideos() {
+    return axiosClassic.get<IVideo[]>(`${this._VIDEOS}/video-games`);
   }
 }
 
